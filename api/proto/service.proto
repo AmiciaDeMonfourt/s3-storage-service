@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "pkg/api";
+
+
+service S3Storage {
+    rpc UploadLiteMedia(UploadLiteMediaRequest) 
+        returns (UploadLiteMediaResponse);
+    
+    rpc DownloadLiteMedia(DownloadLiteMediaRequest) 
+        returns (DownloadLiteMediaResponse);
+    
+    rpc UploadLargeMedia(UploadLargeMediaRequest) 
+        returns (UploadLargeMediaResponse);
+    
+    rpc DownloadLargeMedia(DownloadLargeMediaRequest) 
+        returns (DownloadLargeMediaResponse);
+}
+
+message UploadLiteMediaRequest {
+    bytes data = 1;
+    string objKey = 2;
+    string bucket = 3;
+}
+
+message UploadLiteMediaResponse {
+    string url = 1;
+}
+
+message DownloadLiteMediaRequest {
+    string bucket = 1;
+    string key = 2;
+}
+
+message DownloadLiteMediaResponse {
+    bytes data = 1;
+}
+
+message UploadLargeMediaRequest {
+    bytes data = 1;
+    string objKey = 2;
+    string bucket = 3;
+}
+
+message UploadLargeMediaResponse {
+    string url = 1;
+}
+
+message DownloadLargeMediaRequest {
+    string bucket = 1;
+    string key = 2;
+}
+
+message DownloadLargeMediaResponse {
+    bytes data = 1;
+}
